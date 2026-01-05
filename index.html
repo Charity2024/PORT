@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livingstone Oduor | Senior Full-Stack Developer</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #050505;
+            --card-bg: #0f0f0f;
+            --card-border: #1f1f1f;
+            --accent: #3b82f6;
+            --text-main: #ffffff;
+            --text-dim: #a1a1aa;
+            --glass: rgba(255, 255, 255, 0.03);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* Background Gradient Orbs */
+        .orb {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: -1;
+            opacity: 0.15;
+        }
+        .orb-1 { top: -100px; left: -100px; background: var(--accent); }
+        .orb-2 { bottom: 10%; right: -100px; background: #a855f7; }
+
+        /* Navigation Header */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--card-border);
+            z-index: 1000;
+        }
+
+        .nav-left { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.2rem; }
+        .nav-left span { color: var(--accent); }
+
+        .nav-center { display: flex; gap: 30px; }
+        .nav-center a { 
+            color: var(--text-dim); 
+            text-decoration: none; 
+            font-size: 0.85rem; 
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .nav-center a:hover { color: white; }
+
+        .btn-resume {
+            background: white;
+            color: black;
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-decoration: none;
+        }
+
+        /* Hero Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 140px 20px 60px;
+        }
+
+        /* Status Bar (Unique to his site) */
+        .status-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+            justify-content: center;
+        }
+
+        .status-item {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-item span.live { color: var(--accent); font-weight: 700; }
+        .dot-ping {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            position: relative;
+        }
+        .dot-ping::after {
+            content: '';
+            position: absolute;
+            width: 100%; height: 100%;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: ping 1.5s infinite;
+        }
+
+        @keyframes ping {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(3); opacity: 0; }
+        }
+
+        /* Headline */
+        .hero-text { text-align: center; margin-bottom: 50px; }
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.2rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+            margin-bottom: 25px;
+        }
+        h1 span {
+            background: linear-gradient(to right, #60a5fa, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-sub {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        /* Hero Buttons */
+        .hero-btns { display: flex; justify-content: center; gap: 15px; }
+        .btn-main {
+            background: var(--accent);
+            color: white;
+            padding: 14px 30px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn-outline {
+            border: 1px solid var(--card-border);
+            background: var(--glass);
+            color: white;
+            padding: 14px 30px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Expertise Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 80px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 40px;
+            border-radius: 24px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            border-color: #3b82f6aa;
+            transform: translateY(-5px);
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            margin-bottom: 25px;
+        }
+
+        .card-tag {
+            font-size: 0.7rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            margin-top: 20px;
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-center { display: none; }
+            h1 { font-size: 2.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <nav>
+        <div class="nav-left">Livingstone<span>.</span></div>
+        <div class="nav-center">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Skills</a>
+            <a href="#">Projects</a>
+            <a href="#">Contact</a>
+        </div>
+        <a href="#" class="btn-resume">Download Resume</a>
+    </nav>
+
+    <div class="container">
+        <div class="status-bar" data-aos="fade-down">
+            <div class="status-item">
+                <div class="dot-ping"></div>
+                Open to Remote Positions
+            </div>
+            <div class="status-item">
+                <span class="live">$120K+</span> Positions
+            </div>
+            <div class="status-item">
+                <i data-lucide="map-pin" size="14"></i> Nairobi, Kenya
+            </div>
+            <div class="status-item">
+                <i data-lucide="users" size="14"></i> 1,443 visitors
+            </div>
+        </div>
+
+        <div class="hero-text">
+            <h1 data-aos="fade-up" data-aos-delay="100">
+                Crafting Digital Experiences <br>
+                <span>That Drive Results</span>
+            </h1>
+            <p class="hero-sub" data-aos="fade-up" data-aos-delay="200">
+                I architect and develop high-performance web applications that solve complex business challenges. Full-stack expertise with a passion for user-centered design.
+            </p>
+            
+            <div class="hero-btns" data-aos="fade-up" data-aos-delay="300">
+                <a href="#" class="btn-main">Explore Portfolio <i data-lucide="external-link" size="18"></i></a>
+                <a href="#" class="btn-outline">Schedule Interview</a>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-icon"><i data-lucide="code"></i></div>
+                <h3>Frontend Mastery</h3>
+                <p style="color: var(--text-dim); margin-top: 10px;">React, Next.js, TypeScript with 98% proficiency in building interactive UIs.</p>
+                <span class="card-tag">Explore Expertise</span>
+            </div>
+
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="card-icon" style="color: #a855f7; background: rgba(168, 85, 247, 0.1);"><i data-lucide="database"></i></div>
+                <h3>Backend Excellence</h3>
+                <p style="color: var(--text-dim); margin-top: 10px;">Node.js, Python, PostgreSQL, and microservices architecture for scale.</p>
+                <span class="card-tag" style="color: #a855f7;">99.9% Uptime</span>
+            </div>
+
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="card-icon" style="color: #10b981; background: rgba(16, 185, 129, 0.1);"><i data-lucide="cloud"></i></div>
+                <h3>Cloud Architecture</h3>
+                <p style="color: var(--text-dim); margin-top: 10px;">AWS, Docker, and CI/CD pipelines to ensure seamless deployment cycles.</p>
+                <span class="card-tag" style="color: #10b981;">50% Cost Savings</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+        
+        // Initialize Animations
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+    </script>
+</body>
+</html>
